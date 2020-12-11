@@ -4,22 +4,15 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Homecontroller;
 use App\Http\Controllers\LoginController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
 Route::get('/', function () {
     return view('welcome');
 });
 
-route::get('/Home',[Homecontroller::class,'index'])->name('Home');
-route::get('/Login',[LoginController::class,'halamanlogin'])->name('Login');
+
+route::get('/Login',[LoginController::class,'halamanlogin'])->name('login');
 route::post('/postlogin',[LoginController::class,'postlogin'])->name('postlogin');
 route::get('/Logout',[LoginController::class,'logout'])->name('Logout');
+
+Route::group(['middleware' => ['auth','ceklevel:admin,karyawan']], function () {
+    route::get('/Home',[Homecontroller::class,'index'])->name('Home');
+});
