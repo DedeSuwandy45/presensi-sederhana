@@ -8,8 +8,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
-route::get('/Login',[LoginController::class,'halamanlogin'])->name('login');
+route::get('/registrasi',[LoginController::class,'registrasi'])->name('registrasi');
+route::post('/simpanregistrasi',[LoginController::class,'simpanregistrasi'])->name('simpanregistrasi');
+route::get('/Login',[LoginController::class,'halamanlogin'])->name('Login');
 route::post('/postlogin',[LoginController::class,'postlogin'])->name('postlogin');
 route::get('/Logout',[LoginController::class,'logout'])->name('Logout');
 
